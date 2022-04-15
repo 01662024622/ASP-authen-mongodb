@@ -64,7 +64,7 @@ namespace WebApplication2.Service.EntityService.enforce
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
-                Subject = new ClaimsIdentity(new[] {new Claim("_id", user._id)}),
+                Subject = new ClaimsIdentity(new[] {new Claim("Id", user._id)}),
                 Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)

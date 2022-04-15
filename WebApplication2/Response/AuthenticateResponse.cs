@@ -1,5 +1,6 @@
 ﻿
 
+using System;
 using WebApplication2.Entity;
 
 namespace WebApplication2.Response
@@ -9,7 +10,7 @@ namespace WebApplication2.Response
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Username { get; set; }
-        public string Token { get; set; }
+        public StatusToken TokenForWeb { get; set; }
 
 
         public AuthenticateResponse(User user, string token)
@@ -17,7 +18,18 @@ namespace WebApplication2.Response
             FirstName = user.FirstName;
             LastName = user.LastName;
             Username = user.UserName;
-            Token = token;
+            TokenForWeb = new StatusToken(token, true);
+        }
+        public class StatusToken
+        {
+            public StatusToken(string token,bool status)
+            {
+                Token = token;
+                IsLoggedIn = status;
+            }
+            public string Token { get; set; }
+            public Boolean IsLoggedIn { get; set; }
+            
         }
     }
 }
